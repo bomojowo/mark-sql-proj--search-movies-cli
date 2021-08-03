@@ -12,7 +12,7 @@ const userName = readlineSync.question('May I have your name? ');
 console.log('Hi ' + userName + '! ' + 'Welcome to search-movies-cli!');
 
 const searchedMovie = readlineSync.question('Search for what movie? (or "q" to quit):');
-const text = "SELECT id, name, date, runtime, budget, revenue, vote_average, votes_count from movies WHERE name ilike $1 ORDER BY date DESC"
+const text = "SELECT id, name, date, runtime, budget, revenue, vote_average, votes_count from movies WHERE name ilike $1 AND kind = 'movie' ORDER BY date DESC LIMIT 10"
 const values = [`%${searchedMovie}%`]
 
 const res = await client.query(text, values)
